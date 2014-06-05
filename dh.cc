@@ -1,7 +1,10 @@
 // Copyright 2014 FausticSun
 
 #include <iostream>
-#include "libsodium/src/libsodium/include/sodium.h"
+#include <emscripten.h>
+//#include "libsodium/libsodium-js/include/sodium/randombytes.h"
+#include "libsodium/libsodium-js/include/sodium/crypto_hash_sha256.h"
+#include "libsodium/libsodium-js/include/sodium/crypto_stream.h"
 #include "dh.h"
 
 DH::DH() {
@@ -15,7 +18,10 @@ void DH::genPrivateKey() {
     // Currently using libsodium randombytes for testing
     // To be replaced with window.crypto.getRandomValues
     gmp_randclass rng(gmp_randinit_default);
-    rng.seed(randombytes_uniform(100));
+    int seed = EM_ASM_INT({
+        return Math.floor((Math.random() * $0) + 1);
+    },100);
+    rng.seed(seed);
     pvK = rng.get_z_bits(1030);
 }
 

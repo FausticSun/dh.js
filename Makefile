@@ -1,13 +1,13 @@
 all: test
 
 test: test.o dh.o
-	g++ test.o dh.o gmp.js/.libs/libgmp.a gmp.js/.libs/libgmpxx.a libsodium/src/libsodium/.libs/libsodium.a -o test.out
+	em++ test.o dh.o gmp.js/.libs/libgmp.a gmp.js/.libs/libgmpxx.a libsodium/libsodium-js/lib/libsodium.a -o test.js
 
 test.o:
-	g++ -c test.cc
+	em++ -c test.cc
 
 dh.o:
-	g++ -c -std=c++11 dh.cc
+	em++ -c dh.cc
 
 clean:
-	rm -rf *.o test.out
+	rm -rf *.o test.js
