@@ -7,7 +7,7 @@ test.o:
 	g++ -c test.cc
 
 dh.o:
-	g++ -c dh.cc
+	g++ -c -std=c++11 dh.cc
 
 clean:
 	rm -rf *.o test.out
