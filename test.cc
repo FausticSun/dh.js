@@ -1,4 +1,4 @@
-// Copyright 2014 FausticSun
+// Copyright 2014 Ngee Ann Polytechnic
 
 #include <iostream>
 #include <string>
